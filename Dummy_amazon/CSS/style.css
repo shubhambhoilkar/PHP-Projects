@@ -1,0 +1,60 @@
+.banner-container {
+  background-size: cover;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-overlay {
+  background: rgba(255, 255, 255, 0.85); /* Optional: softer background for readability */
+  padding: 00px;
+  border-radius: 10px;
+  display: inline-block;
+  color: #000;
+}
+
+.card-row {
+  margin-top: -120px; /* Pull the cards up over the banner */
+}
+
+.card {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+
+.card-section {
+    background-size: cover;
+    position: relative;
+  }
+
+.card-section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.6); /* Light overlay to make cards readable */
+    z-index: 1;
+  }
+
+.card-section .container {
+    position: relative;
+    z-index: 2;
+  }
+
+.card{
+	border:none;
+	border-radius:0;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	heght:100;
+}
+.card-title{
+	font-size: 1rem;
+	font-weight: bold;
+}
+.card-body ul{
+	padding-left: 1rem;
+}
+.card-body ul li{
+	font-size: 0.875rem;
+}
+
