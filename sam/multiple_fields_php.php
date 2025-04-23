@@ -6,17 +6,55 @@
 		</title>
 	</head>
 <body>
-	<?php
-	$nameErr = $genderErr ="";
+<pre>
+	<?php 
+	$nameError =$emailError=  $genderError ="";
+	$name= $email= $gender = $comments="";
+	if($_SERVER['REQUEST_METHOD']=="POST"){
+		
+		// and  	-- have to add this
+		if (empty($_POST["name"])) {
+			$nameError ="Name is required!";
+		}else{
+			$name =inspect_input($_POST["name"]);
+		}
+
+		// && filter_var($email,FILTER_VALIDATION_EMAIL) 	--have to add this
+		if (empty($_POST["email"])){
+			$emailError ="Email is required!";
+		}else{
+			$email =inspect_input($_POST['email']);
+		}
+
+		if (empty($_POST['gender'])){
+			$genderError ="Gender is required!";
+		}else{
+			$gender =inspect_input($_POST['gender']);
+		}
+
+		if (empty($_POST['comments'])){
+			$comments ="Can you please add comments for better feedback!";
+		}else{
+			$comments =inspect_input($_POST['comments']);
+		}
+
+	}
+	function inspect_input($data){
+		$data= trim($data);
+		$data= stripslashes($data);
+		$data= htmlspecialchars($data);
+		return $data;
+
+	}
 	?>
-	<form method ="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+</pre><form method ="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 		Name: <input type="text" name="name">
-		<span class="error">* <?php echo $nameErr; ?><br>
+		<span class="error">* <?php echo $nameError; ?><br>
 		Email: <input type="text" name="email">
-		<span class="error">* <?php echo $nameErr; ?><br><br>
+		<span class="error">* <?php echo $emailError; ?><br><br>
 
 		Gender:
-		<span class="error">* <?php echo $genderErr; ?></span><br>
+		<span class="error">* <?php echo $genderError; ?></span><br>
 		<input type="radio" name="gender" value="Male">Male
 		<input type="radio" name="gender" value="Female">Female
 		<input type="radio" name="gender" value="Other">Other
@@ -31,33 +69,15 @@
 
 
 		<input type="Submit">
+		<br><br>
 	</form>
-		
-<pre>
+	
 	<?php 
-	if($_SERVER['REQUEST_METHOD']=="POST"){
-		echo "<br>";
-		echo "Name: ".htmlspecialchars($_POST['name']) ."<br>";
-		echo "Email: ".htmlspecialchars($_POST['email']) ."<br>";
-		if(isset($_POST['gender'])){
-		echo "Gender: ".htmlspecialchars($_POST['gender']) ."<br>";			
-		}else{
-			echo "Gender: Not selected.<br>";
-		}
-		
-		if(!empty($_POST['hobbies'])){
-			echo "Hobbies: ".implode(", ",$_POST['hobbies'])."<br>";
-		}else{
-			echo "Hobbies: Not selected.<br>";
-		}
-
-		if(!empty($_POST['comments'])){
-			echo "Comments: ".htmlspecialchars($_POST['comments'])."<br>";
-		}else{
-			echo "Comments were not added.";
-		}
-	}
+	echo "Here are your inputs: <br>";
+	echo $name ."<br>";
+	echo $email ."<br>";
+	echo $gender ."<br>";
+	echo $comments ."<br>";
 	?>
-</pre>
 </body>
 </html>
