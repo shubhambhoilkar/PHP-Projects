@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Live Search</h3>
+<input type="text" id="search" onkeyup="findUser(this.value)">
+<div id="result"></div>
+
+<script>
+function findUser(str) {
+    if (str.length == 0) {
+        document.getElementById("result").innerHTML = "";
+        return;
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "livesearch.php?q=" + str, true);
+    xhr.onload = function () {
+        document.getElementById("result").innerHTML = this.responseText;
+    };
+    xhr.send();
+}
+</script>
+</body>
+</html>

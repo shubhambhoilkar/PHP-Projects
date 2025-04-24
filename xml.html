@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Show XML Data</h3>
+<button onclick="loadXML()">Load</button>
+<div id="data"></div>
+
+<script>
+function loadXML() {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "data.xml", true);
+    xhr.onload = function () {
+        let xmlDoc = this.responseXML;
+        let output = "";
+        let users = xmlDoc.getElementsByTagName("user");
+        for (let i = 0; i < users.length; i++) {
+            output += users[i].childNodes[0].nodeValue + "<br>";
+        }
+        document.getElementById("data").innerHTML = output;
+    };
+    xhr.send();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Do you like PHP?</h3>
+<button onclick="vote('yes')">Yes</button>
+<button onclick="vote('no')">No</button>
+<div id="pollResult"></div>
+
+<script>
+function vote(answer) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "poll.php?vote=" + answer, true);
+    xhr.onload = function () {
+        document.getElementById("pollResult").innerHTML = this.responseText;
+    };
+    xhr.send();
+}
+</script>
+</body>
+</html>

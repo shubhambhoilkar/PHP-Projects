@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Add User</h3>
+<input type="text" id="name" placeholder="Enter name">
+<button onclick="addUser()">Submit</button>
+
+<div id="response"></div>
+
+<script>
+function addUser() {
+    let name = document.getElementById("name").value;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "insert.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onload = function () {
+        document.getElementById("response").innerHTML = this.responseText;
+    };
+    xhr.send("name=" + name);
+}
+</script>
+</body>
+</html>

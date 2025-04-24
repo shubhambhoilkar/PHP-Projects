@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document>
+  <user>John Doe</user>
+  <email>john@example.com</email>
+  <country>India</country>
+  <location>Maharashtra</location>
+  <education>MCA</education>
+</document>
