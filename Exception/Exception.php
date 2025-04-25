@@ -35,9 +35,15 @@
     echo "Last Error: ";
     print_r($error);
 
-    echo "<h2>5. error_log()</h2>";
-    if (!mysqli_connect("localhost","sam","","sam_database")){
-    error_log("Database error!", 0);}
+    echo "<h2>5. error_log() - Alternate Way</h2>";
+
+    $message = "This is a custom error message logged into a custom file.";
+
+    // Method 3 of error_log() - Write into a custom file
+    error_log($message . "\n", 3, "my_custom_error.log");
+
+    echo "Error message logged to 'my_custom_error.log'.";
+     
     echo "<h2>6. error_reporting()</h2>";
     echo "Current Error Reporting Level: " . error_reporting() . "<br>";
     error_reporting(E_ALL & ~E_NOTICE);
